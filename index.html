@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-агенты для бизнеса — stepback</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3Crect x='13' y='1' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3Crect x='1' y='13' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3Crect x='13' y='13' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3C/svg%3E">
+<meta name="description" content="Внедряю AI-агентов, которые автоматизируют рутину и масштабируют бизнес-процессы. 10+ внедрений, 3x ROI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#7c5cfc;--accent2:#a78bfa;--dark:#1a1a2e;--text:#333;--gray:#6b7280;--light:#f8f9fc;--white:#fff;--shadow:0 2px 8px rgba(0,0,0,.06);--shadow-hover:0 8px 24px rgba(124,92,252,.12);--radius:12px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s}
+.navbar.scrolled{box-shadow:0 1px 12px rgba(0,0,0,.08)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--dark);display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:24px;height:24px;color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--gray);transition:color .2s}
+.nav-links a:hover{color:var(--dark)}
+.nav-cta{background:var(--accent);color:#fff!important;padding:8px 20px;border-radius:8px;font-size:.85rem;font-weight:600;transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(124,92,252,.3)}
+@media(max-width:768px){.nav-links a:not(.nav-cta){display:none}}
+
+/* Hero */
+.hero{padding:140px 0 80px;background:var(--white)}
+.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-text h1{font-size:3.2rem;font-weight:800;line-height:1.15;color:var(--dark);margin-bottom:20px}
+.hero-text h1 .gradient{background:linear-gradient(135deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-text p{font-size:1.15rem;color:var(--gray);margin-bottom:32px;max-width:480px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:14px 32px;border-radius:10px;font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,92,252,.3)}
+
+/* Agent visualization */
+.hero-visual{position:relative;height:380px;display:flex;align-items:center;justify-content:center}
+.agent-grid{position:relative;width:300px;height:300px}
+.agent-node{position:absolute;width:14px;height:14px;background:var(--accent);border-radius:50%;opacity:.15}
+.agent-node.active{opacity:1;animation:pulse 2.5s ease-in-out infinite}
+.agent-node:nth-child(1){top:50%;left:50%;transform:translate(-50%,-50%);width:24px;height:24px;opacity:1;box-shadow:0 0 24px rgba(124,92,252,.4)}
+.agent-node:nth-child(2){top:15%;left:30%;animation-delay:.3s}
+.agent-node:nth-child(3){top:10%;left:65%;animation-delay:.6s}
+.agent-node:nth-child(4){top:40%;left:85%;animation-delay:.9s}
+.agent-node:nth-child(5){top:75%;left:70%;animation-delay:1.2s}
+.agent-node:nth-child(6){top:80%;left:35%;animation-delay:1.5s}
+.agent-node:nth-child(7){top:45%;left:15%;animation-delay:1.8s}
+.agent-line{position:absolute;top:50%;left:50%;height:1px;background:linear-gradient(90deg,rgba(124,92,252,.3),rgba(124,92,252,.05));transform-origin:left center}
+@keyframes pulse{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+
+/* Dots bg */
+.dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(124,92,252,.12) 1px,transparent 1px);background-size:24px 24px;border-radius:20px}
+
+@media(max-width:768px){
+.hero .container{grid-template-columns:1fr;text-align:center}
+.hero-text h1{font-size:2.2rem}
+.hero-text p{margin-left:auto;margin-right:auto}
+.hero-visual{height:240px;margin-top:20px}
+}
+
+/* Social proof */
+.social-proof{background:var(--light);border-top:1px solid rgba(0,0,0,.04);border-bottom:1px solid rgba(0,0,0,.04);padding:40px 0}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.proof-item .number{font-size:2rem;font-weight:800;color:var(--accent)}
+.proof-item .label{font-size:.85rem;color:var(--gray);margin-top:4px}
+@media(max-width:600px){.proof-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
+
+/* Section */
+.section{padding:80px 0}
+.section-light{background:var(--light)}
+.section-title{font-size:2rem;font-weight:700;color:var(--dark);text-align:center;margin-bottom:12px}
+.section-sub{text-align:center;color:var(--gray);margin-bottom:48px;font-size:1.05rem}
+
+/* Icon circle */
+.icon-circle{width:52px;height:52px;border-radius:14px;background:rgba(124,92,252,.08);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.icon-circle svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Services */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:32px 28px;transition:transform .3s,box-shadow .3s}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.service-card h3{font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:8px}
+.service-card p{font-size:.9rem;color:var(--gray);line-height:1.6}
+@media(max-width:768px){.services-grid{grid-template-columns:1fr}}
+
+/* Cases */
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.case-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:32px 28px;transition:transform .3s,box-shadow .3s}
+.case-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.case-tag{display:inline-block;font-size:.75rem;font-weight:600;color:var(--accent);background:rgba(124,92,252,.08);padding:4px 12px;border-radius:6px;margin-bottom:16px}
+.case-card h3{font-size:1.15rem;font-weight:600;color:var(--dark);margin-bottom:12px}
+.case-card ul{list-style:none;padding:0}
+.case-card li{font-size:.9rem;color:var(--gray);padding:4px 0;padding-left:20px;position:relative}
+.case-card li::before{content:'';position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;background:rgba(124,92,252,.2)}
+@media(max-width:768px){.cases-grid{grid-template-columns:1fr}}
+
+/* Steps */
+.steps{display:flex;align-items:flex-start;justify-content:center;gap:0;position:relative;max-width:800px;margin:0 auto}
+.step{text-align:center;flex:1;position:relative;padding:0 20px}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.step h3{font-size:1rem;font-weight:600;color:var(--dark);margin-bottom:8px}
+.step p{font-size:.88rem;color:var(--gray)}
+.step-line{position:absolute;top:24px;left:calc(50% + 40px);width:calc(100% - 80px);height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.step:last-child .step-line{display:none}
+@media(max-width:600px){.steps{flex-direction:column;gap:32px}.step-line{display:none!important}}
+
+/* Why us */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto}
+.why-item{padding:24px;border-left:3px solid var(--accent);background:var(--white);border-radius:0 var(--radius) var(--radius) 0;box-shadow:var(--shadow)}
+.why-item h3{font-size:1rem;font-weight:600;color:var(--dark);margin-bottom:6px}
+.why-item p{font-size:.88rem;color:var(--gray)}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr}}
+
+/* CTA */
+.cta-section{padding:80px 0;background:linear-gradient(135deg,var(--accent),#9b7bff);text-align:center}
+.cta-section h2{font-size:2rem;font-weight:700;color:#fff;margin-bottom:12px}
+.cta-section p{color:rgba(255,255,255,.85);margin-bottom:32px;font-size:1.05rem}
+.btn-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);padding:14px 32px;border-radius:10px;font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+
+/* Footer */
+footer{background:var(--light);padding:40px 0;text-align:center;color:var(--gray);font-size:.85rem;border-top:1px solid rgba(0,0,0,.06)}
+footer a{color:var(--accent)}
+
+/* Animations */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.fade-up.visible{opacity:1;transform:none}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=106882306","ym");ym(106882306,"init",{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106882306" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+<div class="container">
+<a href="index.html#" class="nav-logo">
+<svg class="nav-logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="1" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/></svg>
+stepback
+</a>
+<div class="nav-links">
+<a href="index.html#services">Услуги</a>
+<a href="index.html#cases">Кейсы</a>
+<a href="index.html#how">Как работает</a>
+<a href="https://t.me/ai_free_audit_bot" class="nav-cta" target="_blank">Бесплатный аудит</a>
+</div>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<div class="hero-text">
+<h1><span class="gradient">AI-агенты</span> для вашего бизнеса</h1>
+<p>Автоматизирую рутинные процессы с помощью интеллектуальных агентов. Они работают 24/7, не устают и масштабируются без найма новых сотрудников.</p>
+<a href="https://t.me/ai_free_audit_bot" target="_blank" class="btn-primary">
+Бесплатный аудит процессов
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+</a>
+</div>
+<div class="hero-visual">
+<div class="dots"></div>
+<div class="agent-grid">
+<div class="agent-node active"></div>
+<div class="agent-node active"></div>
+<div class="agent-node active"></div>
+<div class="agent-node active"></div>
+<div class="agent-node active"></div>
+<div class="agent-node active"></div>
+<div class="agent-node active"></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Social proof -->
+<section class="social-proof">
+<div class="container">
+<div class="proof-grid">
+<div class="proof-item fade-up"><div class="number">10+</div><div class="label">внедрений</div></div>
+<div class="proof-item fade-up"><div class="number">3x</div><div class="label">средний ROI</div></div>
+<div class="proof-item fade-up"><div class="number">24/7</div><div class="label">работа агентов</div></div>
+<div class="proof-item fade-up"><div class="number">2–4</div><div class="label">недели до результата</div></div>
+</div>
+</div>
+</section>
+
+<!-- Services -->
+<section class="section" id="services">
+<div class="container">
+<h2 class="section-title fade-up">Что внедряю</h2>
+<p class="section-sub fade-up">AI-агенты под ключевые бизнес-задачи</p>
+<div class="services-grid">
+<div class="service-card fade-up">
+<div class="icon-circle">
+<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+</div>
+<h3>Автоматизация коммуникаций</h3>
+<p>Агенты для ответов клиентам, обработки обращений на маркетплейсах и в мессенджерах. Без шаблонов — с пониманием контекста.</p>
+</div>
+<div class="service-card fade-up">
+<div class="icon-circle">
+<svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+</div>
+<h3>Аналитика и отчёты</h3>
+<p>Финансовый анализ P&L, мониторинг отзывов, аналитика продаж — агенты собирают данные и формируют отчёты автоматически.</p>
+</div>
+<div class="service-card fade-up">
+<div class="icon-circle">
+<svg viewBox="0 0 24 24"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+</div>
+<h3>Сеть AI-агентов</h3>
+<p>Несколько агентов, работающих координированно: один мониторит, другой анализирует, третий действует. Автономная система.</p>
+</div>
+<div class="service-card fade-up">
+<div class="icon-circle">
+<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+</div>
+<h3>Мониторинг и контроль</h3>
+<p>Отслеживание отзывов, цен конкурентов, упоминаний бренда. Агент реагирует мгновенно и уведомляет о важном.</p>
+</div>
+<div class="service-card fade-up">
+<div class="icon-circle">
+<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+</div>
+<h3>Генерация контента</h3>
+<p>AI-фото для карточек товаров, описания, SEO-тексты. Агенты создают контент по заданным параметрам и стилю бренда.</p>
+</div>
+<div class="service-card fade-up">
+<div class="icon-circle">
+<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+</div>
+<h3>Кастомные решения</h3>
+<p>Операционные системы на базе AI, интеграции с CRM и ERP. Проектирую архитектуру под ваши уникальные процессы.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Cases -->
+<section class="section section-light" id="cases">
+<div class="container">
+<h2 class="section-title fade-up">Кейсы</h2>
+<p class="section-sub fade-up">Реальные внедрения AI-агентов</p>
+<div class="cases-grid">
+<div class="case-card fade-up">
+<span class="case-tag">Fashion</span>
+<h3>Feelz</h3>
+<ul>
+<li>Авто-ответы на маркетплейсах</li>
+<li>Финанализ P&L в реальном времени</li>
+<li>AI-генерация фото-контента</li>
+</ul>
+</div>
+<div class="case-card fade-up">
+<span class="case-tag">Интегратор Битрикс24</span>
+<h3>Reformat</h3>
+<ul>
+<li>Кастомная операционная система</li>
+<li>Сеть AI-агентов</li>
+<li>Автономная координация задач</li>
+</ul>
+</div>
+<div class="case-card fade-up">
+<span class="case-tag">Маркетплейсы</span>
+<h3>E-commerce проект</h3>
+<ul>
+<li>Мониторинг отзывов WB/Ozon</li>
+<li>Аналитика продаж</li>
+<li>Автогенерация карточек товаров</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- How it works -->
+<section class="section" id="how">
+<div class="container">
+<h2 class="section-title fade-up">Как это работает</h2>
+<p class="section-sub fade-up">От аудита до работающей системы за 3 шага</p>
+<div class="steps fade-up">
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-line"></div>
+<h3>Аудит процессов</h3>
+<p>Анализируем ваши задачи и находим, где AI-агенты дадут максимальный эффект</p>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-line"></div>
+<h3>Разработка и настройка</h3>
+<p>Проектируем архитектуру, создаём агентов и интегрируем в ваши системы</p>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-line"></div>
+<h3>Запуск и поддержка</h3>
+<p>Запускаем в работу, обучаем команду и сопровождаем на старте</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Why us -->
+<section class="section section-light">
+<div class="container">
+<h2 class="section-title fade-up">Почему я</h2>
+<p class="section-sub fade-up">Не просто настройка ChatGPT, а полноценные автономные системы</p>
+<div class="why-grid">
+<div class="why-item fade-up">
+<h3>Практический опыт</h3>
+<p>10+ реальных внедрений в бизнесы разного масштаба — от стартапов до компаний с оборотом 100М+</p>
+</div>
+<div class="why-item fade-up">
+<h3>Архитектурный подход</h3>
+<p>Проектирую систему агентов, а не одиночные скрипты. Агенты координируются и масштабируются</p>
+</div>
+<div class="why-item fade-up">
+<h3>Быстрый результат</h3>
+<p>Первые агенты запускаются за 2–4 недели. Вы видите ROI уже в первый месяц</p>
+</div>
+<div class="why-item fade-up">
+<h3>Под ключ</h3>
+<p>От аудита до поддержки. Не нужно нанимать AI-инженеров в штат — я закрываю весь цикл</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+<div class="container fade-up">
+<h2>Готовы автоматизировать?</h2>
+<p>Запишитесь на бесплатный аудит — разберём ваши процессы и покажем, где AI-агенты принесут максимум пользы</p>
+<a href="https://t.me/ai_free_audit_bot" target="_blank" class="btn-white">
+Записаться на аудит
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+</a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="container">
+<p>© 2026 stepback | AI-агенты для бизнеса</p>
+<p style="margin-top:8px">
+<a href="https://t.me/nick_kobe_ai" target="_blank">Telegram: @nick_kobe_ai</a> · 
+<a href="https://instagram.com/nick_kobe_ai" target="_blank">Instagram</a> · 
+<a href="https://t.me/ai_free_audit_bot" target="_blank">Бесплатный аудит</a>
+</p>
+</div>
+</footer>
+
+<script>
+// Navbar scroll
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>20)});
+
+// Scroll animations
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+// Draw lines between agent nodes
+(function(){
+const grid=document.querySelector('.agent-grid');
+if(!grid)return;
+const nodes=grid.querySelectorAll('.agent-node');
+const cx=150,cy=150;
+const positions=[
+[150,150],[90,45],[195,30],[255,120],[210,225],[105,240],[45,135]
+];
+nodes.forEach((n,i)=>{
+n.style.left=positions[i][0]+'px';
+n.style.top=positions[i][1]+'px';
+n.style.transform='translate(-50%,-50%)';
+});
+for(let i=1;i<positions.length;i++){
+const line=document.createElement('div');
+line.className='agent-line';
+const dx=positions[i][0]-cx,dy=positions[i][1]-cy;
+const len=Math.sqrt(dx*dx+dy*dy);
+const angle=Math.atan2(dy,dx)*180/Math.PI;
+line.style.width=len+'px';
+line.style.transform='rotate('+angle+'deg)';
+grid.appendChild(line);
+}
+})();
+</script>
+</body>
+</html>
