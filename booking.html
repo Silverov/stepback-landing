@@ -110,28 +110,14 @@ header p{color:#64748b;font-size:15px;line-height:1.5}
 
 <script>
 (function(){
-  const tgApp = window.Telegram && Telegram.WebApp;
-  if (tgApp) {
-    tgApp.ready();
-    tgApp.expand();
-    tgApp.BackButton.onClick(function() {
-      if (document.getElementById('confirmation').style.display !== 'none') {
-        // From confirmation back to form
-        document.getElementById('app').querySelector('.booking').style.display = '';
-        document.getElementById('form-section').style.display = '';
-        document.getElementById('confirmation').style.display = 'none';
-        tgApp.BackButton.hide();
-        updateMainButton();
-      } else if (selectedSlot) {
-        selectedSlot = null; selectedSlot2 = null;
-        render();
-        tgApp.BackButton.hide();
-        updateMainButton();
-      } else {
-        tgApp.close();
-      }
-    });
-  }
+  var tgApp = null;
+  try {
+    tgApp = window.Telegram && Telegram.WebApp;
+    if (tgApp) {
+      tgApp.ready();
+      tgApp.expand();
+    }
+  } catch(e) { console.error('TG init error:', e); }
 
   const ALL_SLOTS = ['10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30'];
   const DAYS_RU = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
@@ -299,6 +285,22 @@ header p{color:#64748b;font-size:15px;line-height:1.5}
   if (tgApp) {
     tgApp.MainButton.onClick(submitBooking);
   }
+
+  // Setup TG BackButton after all functions are defined
+  try {
+    if (tgApp && tgApp.BackButton) {
+      tgApp.BackButton.onClick(function() {
+        if (selectedSlot) {
+          selectedSlot = null; selectedSlot2 = null;
+          render();
+          tgApp.BackButton.hide();
+          updateMainButton();
+        } else {
+          tgApp.close();
+        }
+      });
+    }
+  } catch(e) { console.error('BackButton setup error:', e); }
 
   render();
 })();
