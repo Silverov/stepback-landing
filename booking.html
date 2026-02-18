@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Запись на встречу — Stepback AI Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a2e;min-height:100vh}
+.container{max-width:900px;margin:0 auto;padding:24px 16px}
+header{text-align:center;margin-bottom:40px}
+header h1{font-size:28px;font-weight:700;margin-bottom:8px}
+header p{color:#64748b;font-size:16px;line-height:1.5}
+.accent{color:#7c5cfc}
+.booking{display:flex;gap:32px;align-items:flex-start}
+@media(max-width:680px){.booking{flex-direction:column}}
+.calendar{flex:1;min-width:0}
+.calendar h3{font-size:14px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.week-label{font-size:13px;font-weight:600;color:#94a3b8;margin:16px 0 8px}
+.week-label:first-of-type{margin-top:0}
+.days{display:flex;gap:8px;flex-wrap:wrap}
+.day{padding:12px 16px;border:2px solid #e2e8f0;border-radius:12px;cursor:pointer;text-align:center;min-width:80px;flex:1;transition:all .2s}
+.day:hover:not(.disabled){border-color:#7c5cfc;background:#f8f6ff}
+.day.selected{border-color:#7c5cfc;background:#7c5cfc;color:#fff}
+.day.selected .day-name{color:rgba(255,255,255,.8)}
+.day.disabled{opacity:.35;cursor:not-allowed;background:#f8fafc}
+.day-name{display:block;font-size:11px;font-weight:600;color:#94a3b8;text-transform:uppercase;margin-bottom:4px}
+.day-date{display:block;font-size:15px;font-weight:600}
+.slots-panel{flex:1;min-width:0}
+.slots-panel h3{font-size:14px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px}
+.slots-placeholder{color:#94a3b8;font-size:14px;padding:20px 0}
+.slots-loading{color:#7c5cfc;font-size:14px;padding:20px 0}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;animation:fadeIn .3s ease}
+.slot{padding:10px;border:2px solid #e2e8f0;border-radius:10px;text-align:center;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s}
+.slot:hover:not(.busy){border-color:#7c5cfc;background:#f8f6ff}
+.slot.selected{border-color:#7c5cfc;background:#7c5cfc;color:#fff}
+.slot.busy{opacity:.4;cursor:not-allowed;text-decoration:line-through;background:#f8fafc}
+.form-wrap{margin-top:32px;animation:fadeIn .4s ease}
+.form-wrap h3{font-size:18px;font-weight:600;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;font-weight:500;color:#64748b;margin-bottom:4px}
+.field .optional{color:#94a3b8;font-weight:400}
+.field input,.field textarea{width:100%;padding:10px 14px;border:2px solid #e2e8f0;border-radius:10px;font-size:15px;font-family:inherit;transition:border-color .2s;outline:none}
+.field input:focus,.field textarea:focus{border-color:#7c5cfc}
+.field textarea{resize:vertical;min-height:60px}
+.btn{display:inline-flex;align-items:center;justify-content:center;width:100%;padding:14px;background:#7c5cfc;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;transition:background .2s;font-family:inherit}
+.btn:hover{background:#6a48e6}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.confirmation{text-align:center;padding:40px 0;animation:fadeIn .4s ease}
+.confirmation .check{font-size:56px;margin-bottom:16px}
+.confirmation h2{font-size:24px;font-weight:700;margin-bottom:20px}
+.confirmation .details{background:#f8f6ff;border-radius:16px;padding:24px;text-align:left;max-width:400px;margin:0 auto 24px;line-height:2;font-size:15px}
+.confirmation .note{color:#64748b;font-size:14px;line-height:1.6}
+.confirmation .note a{color:#7c5cfc;text-decoration:none}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📅 Запись на встречу</h1>
+    <p>Запись на онлайн-встречу с <span class="accent">экспертом Stepback AI Agency</span></p>
+  </header>
+
+  <div id="app">
+    <div class="booking">
+      <div class="calendar">
+        <h3>Выберите день</h3>
+        <div id="weeks"></div>
+      </div>
+      <div class="slots-panel">
+        <h3>Время <span class="accent" style="font-weight:400;font-size:12px">MSK · можно выбрать 2 слота</span></h3>
+        <div id="slots"><div class="slots-placeholder">← Выберите день</div></div>
+      </div>
+    </div>
+    <div id="form-section"></div>
+    <div id="confirmation" style="display:none"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const ALL_SLOTS = ['10:00','10:30','11:00','11:30','12:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30'];
+  const DAYS_RU = ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'];
+  const MONTHS_RU = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+
+  // Busy slots cache from Google Calendar
+  const busyCache = {};
+
+  async function fetchBusySlots(dateStr) {
+    if (busyCache[dateStr]) return busyCache[dateStr];
+    try {
+      const res = await fetch('https://booking-api-omega.vercel.app/api/busy?date=' + dateStr);
+      if (res.ok) {
+        const data = await res.json();
+        busyCache[dateStr] = data.busy || [];
+        return busyCache[dateStr];
+      }
+    } catch(e) {}
+    // Fallback: no busy slots if API unavailable
+    busyCache[dateStr] = [];
+    return [];
+  }
+
+  function getDays(){
+    const now=new Date();
+    const today=new Date(now.toLocaleString('en-US',{timeZone:'Europe/Moscow'}));
+    today.setHours(0,0,0,0);
+    const dayOfWeek=today.getDay();
+    const monday=new Date(today);
+    monday.setDate(today.getDate()-((dayOfWeek+6)%7));
+    const days=[];
+    for(let w=0;w<2;w++){
+      const week=[];
+      for(let d=0;d<7;d++){
+        const dt=new Date(monday);
+        dt.setDate(monday.getDate()+w*7+d);
+        const wd=dt.getDay();
+        const past=dt<today;
+        week.push({date:dt,dayName:DAYS_RU[wd],isWeekend:wd===0,isPast:past});
+      }
+      days.push(week);
+    }
+    return days;
+  }
+
+  function fmt(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  function fmtHuman(d){return d.getDate()+' '+MONTHS_RU[d.getMonth()]}
+
+  let selectedDate=null,selectedSlot=null,selectedSlot2=null;
+
+  function render(){
+    const weeks=getDays();
+    const weeksEl=document.getElementById('weeks');
+    weeksEl.innerHTML='';
+    weeks.forEach((week,wi)=>{
+      const label=document.createElement('div');
+      label.className='week-label';
+      label.textContent=wi===0?'Эта неделя':'Следующая неделя';
+      weeksEl.appendChild(label);
+      const row=document.createElement('div');
+      row.className='days';
+      week.forEach(d=>{
+        const el=document.createElement('div');
+        el.className='day'+(d.isWeekend||d.isPast?' disabled':'')+(selectedDate&&fmt(d.date)===fmt(selectedDate)?' selected':'');
+        el.innerHTML=`<span class="day-name">${d.dayName}</span><span class="day-date">${d.date.getDate()}</span>`;
+        if(!d.isWeekend&&!d.isPast)el.onclick=()=>{selectedDate=d.date;selectedSlot=null;selectedSlot2=null;render()};
+        row.appendChild(el);
+      });
+      weeksEl.appendChild(row);
+    });
+    renderSlots();
+    renderForm();
+  }
+
+  async function renderSlots(){
+    const el=document.getElementById('slots');
+    if(!selectedDate){el.innerHTML='<div class="slots-placeholder">← Выберите день</div>';return}
+
+    el.innerHTML='<div class="slots-loading">⏳ Загружаю свободные слоты...</div>';
+    const busy = await fetchBusySlots(fmt(selectedDate));
+
+    el.innerHTML='';
+    const grid=document.createElement('div');
+    grid.className='slots';
+    ALL_SLOTS.forEach((t,i)=>{
+      const s=document.createElement('div');
+      const isBusy=busy.includes(t);
+      const isSelected = selectedSlot===t || selectedSlot2===t;
+      s.className='slot'+(isBusy?' busy':'')+(isSelected?' selected':'');
+      s.textContent=t;
+      if(!isBusy) s.onclick=()=>{
+        if(selectedSlot===t){selectedSlot=null;selectedSlot2=null}
+        else if(selectedSlot2===t){selectedSlot2=null}
+        else if(!selectedSlot){selectedSlot=t;selectedSlot2=null}
+        else{
+          // Check if adjacent (30 min apart)
+          const idx1=ALL_SLOTS.indexOf(selectedSlot);
+          const idxNew=ALL_SLOTS.indexOf(t);
+          if(Math.abs(idx1-idxNew)===1){
+            selectedSlot2=t;
+            // Ensure slot1 < slot2
+            if(idxNew<idx1){const tmp=selectedSlot;selectedSlot=selectedSlot2;selectedSlot2=tmp}
+          } else {
+            selectedSlot=t;selectedSlot2=null;
+          }
+        }
+        render();
+      };
+      grid.appendChild(s);
+    });
+    el.appendChild(grid);
+  }
+
+  function renderForm(){
+    const el=document.getElementById('form-section');
+    if(!selectedSlot){el.innerHTML='';return}
+    const duration = selectedSlot2 ? '1 час' : '30 мин';
+    el.innerHTML=`<div class="form-wrap"><h3>Ваши данные</h3>
+      <div class="field"><label>Имя *</label><input id="f-name" placeholder="Как к вам обращаться"></div>
+      <div class="field"><label>Telegram *</label><input id="f-tg" placeholder="@username или номер"></div>
+      <div class="field"><label>Комментарий <span class="optional">(необязательно)</span></label><textarea id="f-comment" placeholder="О чём хотите поговорить?"></textarea></div>
+      <div style="margin-bottom:14px;padding:12px;background:#f8f6ff;border-radius:10px;font-size:14px;color:#64748b">
+        📅 ${fmtHuman(selectedDate)}, ${selectedSlot}${selectedSlot2 ? ' — ' + selectedSlot2 : ''} (${duration})
+      </div>
+      <button class="btn" id="submit-btn">Подтвердить запись</button></div>`;
+    document.getElementById('submit-btn').onclick=submit;
+  }
+
+  function submit(){
+    const name=document.getElementById('f-name').value.trim();
+    const tg=document.getElementById('f-tg').value.trim();
+    const comment=document.getElementById('f-comment').value.trim();
+    if(!name||!tg){alert('Пожалуйста, заполните имя и Telegram');return}
+
+    const dateStr=fmtHuman(selectedDate);
+    const time=selectedSlot;
+    const duration = selectedSlot2 ? '60' : '30';
+
+    // Deep link: book_YYYY-MM-DD_HHMM_DURATION
+    const params = ['book', fmt(selectedDate), time.replace(':',''), duration].join('_');
+    window.open('https://t.me/ai_free_audit_bot?start='+params,'_blank');
+
+    // Save locally
+    localStorage.setItem('lastBooking', JSON.stringify({name,tg,comment,date:fmt(selectedDate),time,duration,ts:Date.now()}));
+
+    // Show confirmation
+    document.getElementById('app').querySelector('.booking').style.display='none';
+    document.getElementById('form-section').style.display='none';
+    const conf=document.getElementById('confirmation');
+    conf.style.display='block';
+    conf.innerHTML=`<div class="confirmation">
+      <div class="check">✅</div>
+      <h2>Отлично!</h2>
+      <div class="details">
+        📅 ${dateStr}, ${time}${selectedSlot2 ? ' — '+selectedSlot2 : ''} MSK (${duration} мин)<br>
+        👤 ${name}<br>
+        💬 Telegram: ${tg}
+      </div>
+      <div class="note">Подтвердите запись в Telegram-боте.<br>Если нужно перенести — напишите <a href="https://t.me/silverov" target="_blank">@silverov</a></div>
+    </div>`;
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
