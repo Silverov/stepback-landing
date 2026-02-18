@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEO/GEO-оптимизация — попадите в ответы ChatGPT | Stepback AI Agency</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3Crect x='13' y='1' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3Crect x='1' y='13' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3Crect x='13' y='13' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3C/svg%3E">
+<meta name="description" content="AEO/GEO-оптимизация от Stepback AI Agency. Сделаем так, чтобы ChatGPT, Perplexity и Gemini рекомендовали ваш бренд. Бесплатный аудит AI-видимости.">
+<meta name="keywords" content="AEO, GEO, Answer Engine Optimization, Generative Engine Optimization, ChatGPT оптимизация, Perplexity SEO, AI-видимость бренда">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://stepback.ru/aeo.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stepback.ru/aeo.html">
+<meta property="og:title" content="AEO/GEO-оптимизация — попадите в ответы ChatGPT | Stepback AI Agency">
+<meta property="og:description" content="40% запросов уходят в AI. Если вас нет в ответах ChatGPT — вы теряете клиентов. Мы это исправим.">
+<meta property="og:image" content="https://stepback.ru/og-image.png">
+<meta property="og:locale" content="ru_RU">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#7c5cfc;--accent2:#a78bfa;--dark:#1a1a2e;--text:#333;--gray:#6b7280;--light:#f8f9fc;--white:#fff;--shadow:0 2px 8px rgba(0,0,0,.06);--shadow-hover:0 8px 24px rgba(124,92,252,.12);--radius:12px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s}
+.navbar.scrolled{box-shadow:0 1px 12px rgba(0,0,0,.08)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--dark);display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:24px;height:24px;color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--gray);transition:color .2s}
+.nav-links a:hover{color:var(--dark)}
+.nav-cta{background:var(--accent);color:#fff!important;padding:8px 20px;border-radius:8px;font-size:.85rem;font-weight:600;transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(124,92,252,.3)}
+@media(max-width:768px){.nav-links a:not(.nav-cta){display:none}}
+
+/* Hero */
+.hero{padding:140px 0 80px;background:linear-gradient(180deg,#f0ecff 0%,var(--white) 100%)}
+.hero .container{text-align:center;max-width:820px}
+.hero h1{font-size:2.8rem;font-weight:800;line-height:1.15;color:var(--dark);margin-bottom:20px}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.2rem;color:var(--gray);margin-bottom:36px;max-width:640px;margin-left:auto;margin-right:auto}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:14px 32px;border-radius:10px;font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,92,252,.3)}
+@media(max-width:768px){.hero h1{font-size:2rem}.hero p{font-size:1.05rem}}
+
+/* Section */
+.section{padding:80px 0}
+.section-light{background:var(--light)}
+.section-title{font-size:2rem;font-weight:700;color:var(--dark);text-align:center;margin-bottom:12px}
+.section-sub{text-align:center;color:var(--gray);margin-bottom:48px;font-size:1.05rem;max-width:640px;margin-left:auto;margin-right:auto}
+
+/* Problem */
+.problem-box{max-width:800px;margin:0 auto;background:linear-gradient(135deg,#1a1a2e,#2d2b55);border-radius:var(--radius);padding:48px;color:#fff;text-align:center}
+.problem-box .big-num{font-size:4rem;font-weight:800;background:linear-gradient(135deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px}
+.problem-box h3{font-size:1.4rem;font-weight:700;margin-bottom:16px}
+.problem-box p{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.7;max-width:600px;margin:0 auto}
+.problem-box .ai-logos{display:flex;justify-content:center;gap:24px;margin-top:24px;font-size:.9rem;color:rgba(255,255,255,.5);font-weight:600}
+
+/* Icon circle */
+.icon-circle{width:52px;height:52px;border-radius:14px;background:rgba(124,92,252,.08);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.icon-circle svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Services grid */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:32px 28px;transition:transform .3s,box-shadow .3s}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.service-card h3{font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:8px}
+.service-card p{font-size:.9rem;color:var(--gray);line-height:1.6}
+@media(max-width:768px){.services-grid{grid-template-columns:1fr}}
+
+/* Why now */
+.why-now{max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.why-now-card{padding:28px;background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);transition:transform .3s,box-shadow .3s}
+.why-now-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.why-now-card .emoji{font-size:2rem;margin-bottom:12px}
+.why-now-card h3{font-size:1.05rem;font-weight:600;color:var(--dark);margin-bottom:8px}
+.why-now-card p{font-size:.9rem;color:var(--gray);line-height:1.6}
+@media(max-width:600px){.why-now{grid-template-columns:1fr}}
+
+/* Steps */
+.steps{display:flex;align-items:flex-start;justify-content:center;gap:0;position:relative;max-width:900px;margin:0 auto}
+.step{text-align:center;flex:1;position:relative;padding:0 20px}
+.step-num{width:48px;height:48px;border-radius:50%;background:var(--accent);color:#fff;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.step h3{font-size:1rem;font-weight:600;color:var(--dark);margin-bottom:8px}
+.step p{font-size:.88rem;color:var(--gray)}
+.step-line{position:absolute;top:24px;left:calc(50% + 40px);width:calc(100% - 80px);height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.step:last-child .step-line{display:none}
+@media(max-width:600px){.steps{flex-direction:column;gap:32px}.step-line{display:none!important}}
+
+/* FAQ */
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.06)}
+.faq-question{width:100%;background:none;border:none;text-align:left;padding:20px 0;font-family:'Inter',system-ui,sans-serif;font-size:1rem;font-weight:600;color:var(--dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;line-height:1.4}
+.faq-question::after{content:'+';font-size:1.4rem;color:var(--accent);flex-shrink:0;transition:transform .3s}
+.faq-question.open::after{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-answer p{padding:0 0 20px;font-size:.92rem;color:var(--gray);line-height:1.7}
+
+/* CTA */
+.cta-section{padding:80px 0;background:linear-gradient(135deg,var(--accent),#9b7bff);text-align:center}
+.cta-section h2{font-size:2rem;font-weight:700;color:#fff;margin-bottom:12px}
+.cta-section p{color:rgba(255,255,255,.85);margin-bottom:32px;font-size:1.05rem}
+.btn-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);padding:14px 32px;border-radius:10px;font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+
+/* Footer */
+footer{background:var(--light);padding:40px 0;text-align:center;color:var(--gray);font-size:.85rem;border-top:1px solid rgba(0,0,0,.06)}
+footer a{color:var(--accent)}
+
+/* Animations */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.fade-up.visible{opacity:1;transform:none}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=106882306","ym");ym(106882306,"init",{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106882306" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+<div class="container">
+<a href="/" class="nav-logo">
+<svg class="nav-logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="1" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/></svg>
+Stepback AI Agency
+</a>
+<div class="nav-links">
+<a href="/#services">Услуги</a>
+<a href="/aeo.html">AEO/GEO</a>
+<a href="/#cases">Кейсы</a>
+<a href="/#faq">FAQ</a>
+<a href="https://t.me/ai_free_audit_bot" class="nav-cta" target="_blank" rel="noopener noreferrer">Бесплатный аудит</a>
+</div>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<div class="container fade-up">
+<h1>Ваши клиенты спрашивают ChatGPT — <span class="gradient">а он рекомендует конкурентов</span></h1>
+<p>AEO/GEO-оптимизация: сделаем так, чтобы нейросети рекомендовали именно вас</p>
+<a href="https://t.me/ai_free_audit_bot" target="_blank" rel="noopener noreferrer" class="btn-primary">
+Бесплатный аудит AI-видимости
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+</a>
+</div>
+</section>
+
+<!-- Problem -->
+<section class="section">
+<div class="container">
+<div class="problem-box fade-up">
+<div class="big-num">40%</div>
+<h3>поисковых запросов уже уходят в AI-ассистенты</h3>
+<p>Если вашего бренда нет в ответах ChatGPT, Perplexity, Gemini — вы теряете клиентов прямо сейчас. Они не уходят к конкурентам через Google — они уходят через AI.</p>
+<div class="ai-logos">
+<span>ChatGPT</span>
+<span>Perplexity</span>
+<span>Gemini</span>
+<span>Claude</span>
+<span>Алиса</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- What we do -->
+<section class="section section-light">
+<div class="container">
+<h2 class="section-title fade-up">Что мы делаем</h2>
+<p class="section-sub fade-up">Комплексная работа с AI-видимостью вашего бренда</p>
+<div class="services-grid">
+<div class="service-card fade-up">
+<div class="icon-circle">
+<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+</div>
+<h3>Аудит AI-видимости</h3>
+<p>Проверяем, как LLM видят ваш бренд по 100+ релевантным запросам. Узнаете, кого рекомендуют вместо вас и почему.</p>
+</div>
+<div class="service-card fade-up">
+<div class="icon-circle">
+<svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+</div>
+<h3>Стратегия присутствия</h3>
+<p>Разрабатываем контент-план, entity optimization, structured data — всё, чтобы AI-модели начали цитировать именно вас.</p>
+</div>
+<div class="service-card fade-up">
+<div class="icon-circle">
+<svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+</div>
+<h3>Мониторинг и рост</h3>
+<p>Ежедневный трекинг упоминаний вашего бренда в AI-ответах через наших AI-агентов. Отчёты и корректировка стратегии.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Why now -->
+<section class="section">
+<div class="container">
+<h2 class="section-title fade-up">Почему именно сейчас</h2>
+<p class="section-sub fade-up">Окно возможностей, которое скоро закроется</p>
+<div class="why-now">
+<div class="why-now-card fade-up">
+<div class="emoji">🏁</div>
+<h3>Рынок в РФ почти пуст</h3>
+<p>AEO/GEO-оптимизацией в России занимаются единицы. Вы можете стать первым в своей нише, кого рекомендуют нейросети.</p>
+</div>
+<div class="why-now-card fade-up">
+<div class="emoji">📈</div>
+<h3>Рост AI-поиска экспоненциален</h3>
+<p>ChatGPT, Perplexity и другие растут на 30-50% в квартал. Через год конкуренция за AI-видимость будет в разы выше.</p>
+</div>
+<div class="why-now-card fade-up">
+<div class="emoji">⚡</div>
+<h3>Минимальная конкуренция</h3>
+<p>Пока конкуренты тратят бюджеты на SEO и контекст, вы можете занять позиции в AI-ответах практически без борьбы.</p>
+</div>
+<div class="why-now-card fade-up">
+<div class="emoji">🎯</div>
+<h3>Эффект накопления</h3>
+<p>Чем раньше начнёте — тем больше данных накопят модели о вашем бренде. Это работает как compound interest.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- How it works -->
+<section class="section section-light">
+<div class="container">
+<h2 class="section-title fade-up">Как это работает</h2>
+<p class="section-sub fade-up">4 шага к присутствию в AI-ответах</p>
+<div class="steps fade-up">
+<div class="step">
+<div class="step-num">1</div>
+<div class="step-line"></div>
+<h3>Аудит</h3>
+<p>Проверяем текущее присутствие бренда в ответах всех ключевых AI-систем</p>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div class="step-line"></div>
+<h3>Стратегия</h3>
+<p>Формируем план: какие площадки, какой контент, какие сущности усилить</p>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div class="step-line"></div>
+<h3>Внедрение</h3>
+<p>Публикуем контент, оптимизируем structured data, работаем с источниками</p>
+</div>
+<div class="step">
+<div class="step-num">4</div>
+<div class="step-line"></div>
+<h3>Мониторинг</h3>
+<p>Отслеживаем позиции ежедневно, корректируем стратегию по результатам</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+<div class="container">
+<h2 class="section-title fade-up">Частые вопросы</h2>
+<p class="section-sub fade-up">Всё, что нужно знать об AEO/GEO</p>
+<div class="faq-list fade-up">
+<div class="faq-item">
+<button class="faq-question" aria-expanded="false">Что такое AEO/GEO?</button>
+<div class="faq-answer"><p>AEO (Answer Engine Optimization) — оптимизация для попадания в ответы AI-систем: ChatGPT, Perplexity, Claude, Gemini. GEO (Generative Engine Optimization) — более широкий подход, включающий работу с источниками данных, которые генеративные модели используют для формирования ответов. Вместе эти подходы обеспечивают присутствие вашего бренда в AI-выдаче.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" aria-expanded="false">Чем AEO/GEO отличается от SEO?</button>
+<div class="faq-answer"><p>SEO оптимизирует сайт для поисковых систем (Google, Яндекс) — чтобы попасть в топ выдачи. AEO/GEO оптимизирует присутствие бренда для AI-ассистентов — чтобы попасть в их ответы. Это разные каналы трафика с разными правилами. AI не ранжирует ссылки — он формирует ответ на основе знаний. Поэтому нужны другие подходы: entity optimization, structured data, присутствие на цитируемых площадках.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" aria-expanded="false">Сколько времени до результата?</button>
+<div class="faq-answer"><p>Первые изменения в AI-ответах видны через 1–3 месяца. Скорость зависит от ниши, текущего присутствия бренда в интернете и конкуренции. AI-модели обновляют свои знания периодически, поэтому важно начать работу как можно раньше — эффект накапливается со временем.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" aria-expanded="false">Сколько стоит?</button>
+<div class="faq-answer"><p>AEO/GEO-оптимизация — от 50 000 ₽/мес. Включает аудит AI-видимости, разработку и реализацию контент-стратегии, ежедневный мониторинг упоминаний и ежемесячную отчётность. Точная стоимость зависит от ниши и объёма работ — рассчитаем после бесплатного аудита.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+<div class="container fade-up">
+<h2>Узнайте, как AI видит ваш бренд</h2>
+<p>Бесплатный аудит — проверим присутствие вашего бренда в ответах ChatGPT, Perplexity и других AI-систем</p>
+<a href="https://t.me/ai_free_audit_bot" target="_blank" rel="noopener noreferrer" class="btn-white">
+Бесплатный аудит AI-видимости
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+</a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="container">
+<p>© 2026 Stepback AI Agency | AI-агенты для бизнеса</p>
+<p style="margin-top:8px">
+<a href="https://t.me/nick_kobe_ai" target="_blank" rel="noopener noreferrer">Telegram: @nick_kobe_ai</a> · 
+<a href="https://t.me/ai_free_audit_bot" target="_blank" rel="noopener noreferrer">Бесплатный аудит</a>
+</p>
+<p style="margin-top:12px;font-size:.75rem;color:#999;line-height:1.5">
+ООО «Степбэк» · ИНН 9715486346 · ОГРН 1247700441438<br>
+115487, г. Москва, ул. Садовники, д. 9, помещ. 6/2
+</p>
+</div>
+</footer>
+
+<script>
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>20)});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+document.querySelectorAll('.faq-question').forEach(btn=>{
+btn.addEventListener('click',()=>{
+const open=btn.classList.toggle('open');
+btn.setAttribute('aria-expanded',open);
+const ans=btn.nextElementSibling;
+ans.style.maxHeight=open?ans.scrollHeight+'px':'0';
+});
+});
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "AEO/GEO оптимизация",
+  "name": "AEO/GEO-оптимизация — присутствие бренда в ответах AI",
+  "provider": {"@type": "Organization", "name": "Stepback AI Agency", "url": "https://stepback.ru"},
+  "description": "Оптимизация присутствия бренда в ответах ChatGPT, Perplexity, Gemini, Claude. Answer Engine Optimization и Generative Engine Optimization.",
+  "areaServed": "RU",
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "RUB",
+    "price": "50000",
+    "priceSpecification": {"@type": "UnitPriceSpecification", "price": "50000", "priceCurrency": "RUB", "unitText": "мес"}
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Что такое AEO/GEO?", "acceptedAnswer": {"@type": "Answer", "text": "AEO (Answer Engine Optimization) — оптимизация для попадания в ответы AI-систем. GEO (Generative Engine Optimization) — работа с источниками данных генеративных моделей."}},
+    {"@type": "Question", "name": "Чем AEO/GEO отличается от SEO?", "acceptedAnswer": {"@type": "Answer", "text": "SEO оптимизирует для поисковых систем, AEO/GEO — для AI-ассистентов. Разные каналы, разные правила."}},
+    {"@type": "Question", "name": "Сколько времени до результата?", "acceptedAnswer": {"@type": "Answer", "text": "Первые изменения в AI-ответах видны через 1–3 месяца."}},
+    {"@type": "Question", "name": "Сколько стоит AEO/GEO-оптимизация?", "acceptedAnswer": {"@type": "Answer", "text": "От 50 000 ₽/мес. Включает аудит, контент-стратегию, мониторинг и отчётность."}}
+  ]
+}
+</script>
+</body>
+</html>
