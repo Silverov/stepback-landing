@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Подключи AI-ассистента за 15 минут — Stepback AI Agency</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='1' y='1' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3Crect x='13' y='1' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3Crect x='1' y='13' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3Crect x='13' y='13' width='10' height='10' rx='2' fill='%237c5cfc'/%3E%3C/svg%3E">
+<meta name="description" content="Подключи AI-ассистента в Telegram за 15 минут. Без сервера, без программирования. Выбери роль — секретарь, маркетолог, продажник — и агент начнёт работать.">
+<link rel="canonical" href="https://stepback.ru/connect.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stepback.ru/connect.html">
+<meta property="og:title" content="Подключи AI-ассистента за 15 минут — Stepback">
+<meta property="og:description" content="Без сервера, без терминала. Создай бота, выбери роль, оплати — агент пишет тебе первым.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#7c5cfc;--accent2:#a78bfa;--dark:#1a1a2e;--text:#333;--gray:#6b7280;--light:#f8f9fc;--white:#fff;--shadow:0 2px 8px rgba(0,0,0,.06);--shadow-hover:0 8px 24px rgba(124,92,252,.12);--radius:12px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* Navbar */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s}
+.navbar.scrolled{box-shadow:0 1px 12px rgba(0,0,0,.08)}
+.navbar .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--dark);display:flex;align-items:center;gap:8px}
+.nav-logo-icon{width:24px;height:24px;color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--gray);transition:color .2s}
+.nav-links a:hover{color:var(--dark)}
+.nav-cta{background:var(--accent);color:#fff!important;padding:8px 20px;border-radius:8px;font-size:.85rem;font-weight:600;transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(124,92,252,.3)}
+@media(max-width:768px){.nav-links a:not(.nav-cta){display:none}}
+
+/* Hero */
+.hero{padding:140px 0 80px;background:var(--white);text-align:center}
+.hero h1{font-size:3rem;font-weight:800;line-height:1.15;color:var(--dark);margin-bottom:20px}
+.hero h1 .gradient{background:linear-gradient(135deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.15rem;color:var(--gray);margin-bottom:12px;max-width:600px;margin-left:auto;margin-right:auto}
+.hero-badges{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--light);border:1px solid rgba(0,0,0,.06);padding:8px 16px;border-radius:8px;font-size:.85rem;font-weight:500;color:var(--dark)}
+.hero-badge svg{width:16px;height:16px;color:var(--accent)}
+@media(max-width:768px){.hero h1{font-size:2.2rem}}
+
+/* Section */
+.section{padding:80px 0}
+.section-light{background:var(--light)}
+.section-title{font-size:2rem;font-weight:700;color:var(--dark);text-align:center;margin-bottom:12px}
+.section-sub{text-align:center;color:var(--gray);margin-bottom:48px;font-size:1.05rem}
+
+/* Steps */
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:960px;margin:0 auto}
+.step-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:32px 28px;position:relative;transition:transform .3s,box-shadow .3s}
+.step-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-size:1.1rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.step-card h3{font-size:1.1rem;font-weight:600;color:var(--dark);margin-bottom:10px}
+.step-card p{font-size:.9rem;color:var(--gray);line-height:1.7}
+.step-card code{background:rgba(124,92,252,.08);color:var(--accent);padding:2px 8px;border-radius:4px;font-size:.85rem;font-weight:500}
+@media(max-width:768px){.steps-grid{grid-template-columns:1fr}}
+
+/* Role cards */
+.roles-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.role-card{background:var(--white);border:2px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:28px 20px;text-align:center;transition:transform .3s,box-shadow .3s,border-color .3s;cursor:default}
+.role-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover);border-color:var(--accent)}
+.role-icon{font-size:2.4rem;margin-bottom:12px}
+.role-card h3{font-size:1rem;font-weight:600;color:var(--dark);margin-bottom:8px}
+.role-card p{font-size:.82rem;color:var(--gray);line-height:1.6}
+@media(max-width:900px){.roles-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.roles-grid{grid-template-columns:1fr 1fr}.role-card:last-child{grid-column:1/-1}}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.pricing-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);padding:32px 24px;text-align:center;transition:transform .3s,box-shadow .3s;position:relative}
+.pricing-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.pricing-card.popular{border:2px solid var(--accent)}
+.pricing-card.popular::before{content:'Популярный';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.75rem;font-weight:600;padding:4px 14px;border-radius:6px}
+.pricing-card h3{font-size:1rem;font-weight:600;color:var(--dark);margin-bottom:4px}
+.pricing-desc{font-size:.85rem;color:var(--gray);margin-bottom:12px;font-style:italic}
+.pricing-price{font-size:2rem;font-weight:800;color:var(--dark);margin-bottom:4px}
+.pricing-price span{font-size:.9rem;font-weight:400;color:var(--gray)}
+.pricing-features{list-style:none;padding:0;margin:20px 0 24px;text-align:left}
+.pricing-features li{font-size:.88rem;color:var(--gray);padding:6px 0;padding-left:22px;position:relative}
+.pricing-features li::before{content:'✓';position:absolute;left:0;color:var(--accent);font-weight:700}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 24px;border-radius:10px;font-size:.9rem;font-weight:600;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(124,92,252,.3)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--accent);padding:12px 24px;border-radius:10px;font-size:.9rem;font-weight:600;border:2px solid var(--accent);cursor:pointer;transition:transform .2s,background .2s,color .2s}
+.btn-outline:hover{background:var(--accent);color:#fff;transform:translateY(-2px)}
+@media(max-width:900px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.pricing-grid{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-list{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.06)}
+.faq-question{width:100%;background:none;border:none;text-align:left;padding:20px 0;font-family:'Inter',system-ui,sans-serif;font-size:1rem;font-weight:600;color:var(--dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;line-height:1.4}
+.faq-question::after{content:'+';font-size:1.4rem;color:var(--accent);flex-shrink:0;transition:transform .3s}
+.faq-question.open::after{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-answer p{padding:0 0 20px;font-size:.92rem;color:var(--gray);line-height:1.7}
+
+/* CTA */
+.cta-section{padding:80px 0;background:linear-gradient(135deg,var(--accent),#9b7bff);text-align:center}
+.cta-section h2{font-size:2rem;font-weight:700;color:#fff;margin-bottom:12px}
+.cta-section p{color:rgba(255,255,255,.85);margin-bottom:32px;font-size:1.05rem}
+.btn-white{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--accent);padding:14px 32px;border-radius:10px;font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+
+/* Footer */
+footer{background:var(--light);padding:40px 0;text-align:center;color:var(--gray);font-size:.85rem;border-top:1px solid rgba(0,0,0,.06)}
+footer a{color:var(--accent)}
+
+/* Animations */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.fade-up.visible{opacity:1;transform:none}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=106882306","ym");ym(106882306,"init",{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/106882306" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+<div class="container">
+<a href="index.html" class="nav-logo">
+<svg class="nav-logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="1" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="1" width="10" height="10" rx="2" fill="currentColor"/><rect x="1" y="13" width="10" height="10" rx="2" fill="currentColor"/><rect x="13" y="13" width="10" height="10" rx="2" fill="currentColor"/></svg>
+Stepback AI Agency
+</a>
+<div class="nav-links">
+<a href="index.html#services">Услуги</a>
+<a href="index.html#cases">Кейсы</a>
+<a href="#pricing">Тарифы</a>
+<a href="#faq">FAQ</a>
+<a href="https://t.me/ai_free_audit_bot" class="nav-cta" target="_blank" rel="noopener noreferrer">Подключить</a>
+</div>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<h1>Подключи <span class="gradient">AI-ассистента</span><br>за 15 минут</h1>
+<p>Без Mac Mini, без сервера, без терминала. Просто создай бота в Telegram, выбери роль — и агент начнёт работать.</p>
+<div class="hero-badges">
+<div class="hero-badge">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+Без технических знаний
+</div>
+<div class="hero-badge">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+15 минут на старт
+</div>
+<div class="hero-badge">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+Работает 24/7
+</div>
+</div>
+</div>
+</section>
+
+<!-- How it works -->
+<section class="section section-light" id="how">
+<div class="container">
+<h2 class="section-title fade-up">Как это работает</h2>
+<p class="section-sub fade-up">Три простых шага — и у вас есть AI-ассистент</p>
+<div class="steps-grid fade-up">
+<div class="step-card">
+<div class="step-num">1</div>
+<h3>Создайте бота в Telegram</h3>
+<p>Откройте <a href="https://t.me/BotFather" target="_blank" style="color:var(--accent);font-weight:500">@BotFather</a> в Telegram, отправьте <code>/newbot</code>, придумайте имя и скопируйте токен. Занимает 2 минуты.</p>
+</div>
+<div class="step-card">
+<div class="step-num">2</div>
+<h3>Выберите роль агента</h3>
+<p>AI-секретарь, маркетолог, продажник — выберите, что вам нужно. Каждая роль уже обучена и готова к работе.</p>
+</div>
+<div class="step-card">
+<div class="step-num">3</div>
+<h3>Оплатите и запускайте</h3>
+<p>После оплаты агент автоматически подключается к вашему боту и пишет вам первым. Всё — он работает.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Roles -->
+<section class="section" id="roles">
+<div class="container">
+<h2 class="section-title fade-up">Выберите роль для агента</h2>
+<p class="section-sub fade-up">Каждый агент обучен под конкретные задачи</p>
+<div class="roles-grid fade-up">
+<div class="role-card">
+<div class="role-icon">📋</div>
+<h3>AI-секретарь</h3>
+<p>Управляет расписанием, напоминает о задачах, обрабатывает входящие сообщения и фильтрует важное</p>
+</div>
+<div class="role-card">
+<div class="role-icon">📣</div>
+<h3>AI-маркетолог</h3>
+<p>Генерирует идеи для контента, пишет посты, анализирует конкурентов и предлагает стратегии продвижения</p>
+</div>
+<div class="role-card">
+<div class="role-icon">💰</div>
+<h3>AI-продажник</h3>
+<p>Обрабатывает лиды, квалифицирует клиентов, отвечает на вопросы о продукте и ведёт до сделки</p>
+</div>
+<div class="role-card">
+<div class="role-icon">✍️</div>
+<h3>AI-контентщик</h3>
+<p>Пишет статьи, посты для соцсетей, рассылки и описания товаров в стиле вашего бренда</p>
+</div>
+<div class="role-card">
+<div class="role-icon">📊</div>
+<h3>AI-аналитик</h3>
+<p>Собирает данные, строит отчёты, находит инсайты в цифрах и даёт рекомендации по улучшению</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Pricing -->
+<section class="section section-light" id="pricing">
+<div class="container">
+<h2 class="section-title fade-up">Тарифы</h2>
+<p class="section-sub fade-up">Выберите сценарий — агент подстроится под ваши задачи</p>
+<div class="pricing-grid fade-up">
+<div class="pricing-card">
+<div style="font-size:1.5rem;margin-bottom:8px">🟢</div>
+<h3>Личный</h3>
+<div class="pricing-desc">AI-помощник на каждый день</div>
+<div class="pricing-price">1 990₽ <span>/мес</span></div>
+<ul class="pricing-features">
+<li>Напоминания, списки, заметки</li>
+<li>Поиск информации и ответы на вопросы</li>
+<li>Составить письмо или перевести текст</li>
+<li>Спланировать поездку или покупку</li>
+<li>Работает 24/7, обновления бесплатно</li>
+</ul>
+<a href="https://t.me/ai_free_audit_bot" target="_blank" class="btn-outline">Подключить</a>
+</div>
+<div class="pricing-card popular">
+<div style="font-size:1.5rem;margin-bottom:8px">🔵</div>
+<h3>Фрилансер</h3>
+<div class="pricing-desc">Второй мозг для одиночки</div>
+<div class="pricing-price">4 990₽ <span>/мес</span></div>
+<ul class="pricing-features">
+<li>Всё из «Личного»</li>
+<li>Написать пост, текст для сайта, рассылку</li>
+<li>Подготовить коммерческое предложение</li>
+<li>Проанализировать конкурентов</li>
+<li>Контент-план на неделю</li>
+</ul>
+<a href="https://t.me/ai_free_audit_bot" target="_blank" class="btn-primary">Подключить</a>
+</div>
+<div class="pricing-card">
+<div style="font-size:1.5rem;margin-bottom:8px">🟣</div>
+<h3>Бизнес</h3>
+<div class="pricing-desc">AI-сотрудник для компании</div>
+<div class="pricing-price">9 990₽ <span>/мес</span></div>
+<ul class="pricing-features">
+<li>Всё из «Фрилансера»</li>
+<li>Обработка заявок и ответы клиентам</li>
+<li>Еженедельные отчёты по задачам</li>
+<li>Работа с документами и таблицами</li>
+<li>До 3 часов доработок под ваш бизнес</li>
+</ul>
+<a href="https://t.me/ai_free_audit_bot" target="_blank" class="btn-outline">Подключить</a>
+</div>
+<div class="pricing-card">
+<div style="font-size:1.5rem;margin-bottom:8px">⚡</div>
+<h3>Рост</h3>
+<div class="pricing-desc">Полноценный AI-отдел</div>
+<div class="pricing-price">19 990₽ <span>/мес</span></div>
+<ul class="pricing-features">
+<li>Всё из «Бизнеса»</li>
+<li>Приоритетная поддержка (ответ &lt; 2ч)</li>
+<li>5 часов доработок и кастомизации</li>
+<li>Интеграции (почта, CRM, таблицы)</li>
+<li>Персональный менеджер</li>
+</ul>
+<a href="https://t.me/ai_free_audit_bot" target="_blank" class="btn-outline">Подключить</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+<div class="container">
+<h2 class="section-title fade-up">Частые вопросы</h2>
+<p class="section-sub fade-up">Всё, что нужно знать перед подключением</p>
+<div class="faq-list fade-up">
+<div class="faq-item">
+<button class="faq-question" aria-expanded="false">Что если бот сломается?</button>
+<div class="faq-answer"><p>Мы мониторим работу всех ботов автоматически. Если что-то пойдёт не так — мы узнаем первыми и починим. На всех тарифах исправление багов бесплатно. Среднее время реакции — 30 минут в рабочее время.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" aria-expanded="false">Могу ли я доработать бота под себя?</button>
+<div class="faq-answer"><p>Да! На тарифах «Малый» и выше включены часы доработок. Вы можете менять поведение агента, добавлять интеграции, настраивать стиль общения. Просто опишите, что хотите — мы сделаем.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" aria-expanded="false">Где хостится бот?</button>
+<div class="faq-answer"><p>На наших серверах в России. Вам не нужно думать о хостинге, обновлениях и серверах — всё на нашей стороне. Бот работает 24/7 с гарантией аптайма 99.5%.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" aria-expanded="false">Безопасно ли передавать токен бота?</button>
+<div class="faq-answer"><p>Токен бота — это не доступ к вашему аккаунту Telegram. Это ключ только к самому боту, который вы создали. Мы храним токены в зашифрованном виде и используем их исключительно для работы вашего агента. В любой момент вы можете отозвать токен через @BotFather.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-question" aria-expanded="false">Можно ли сменить роль агента?</button>
+<div class="faq-answer"><p>Да, вы можете сменить роль агента в любой момент без доплаты. Просто напишите в поддержку — переключим за 5 минут.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+<div class="container fade-up">
+<h2>Готовы подключить AI-ассистента?</h2>
+<p>Создайте бота, выберите роль — и через 15 минут у вас будет работающий AI-агент</p>
+<a href="https://t.me/ai_free_audit_bot" target="_blank" rel="noopener noreferrer" class="btn-white">
+Подключить сейчас
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+</a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer>
+<div class="container">
+<p>© 2026 Stepback AI Agency | AI-агенты для бизнеса</p>
+<p style="margin-top:8px">
+<a href="https://t.me/nick_kobe_ai" target="_blank" rel="noopener noreferrer">Telegram: @nick_kobe_ai</a> · 
+<a href="index.html">Главная</a>
+</p>
+<p style="margin-top:12px;font-size:.75rem;color:#999;line-height:1.5">
+ООО «Степбэк» · ИНН 9715486346 · ОГРН 1247700441438<br>
+115487, г. Москва, ул. Садовники, д. 9, помещ. 6/2
+</p>
+</div>
+</footer>
+
+<script>
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>20)});
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+document.querySelectorAll('.faq-question').forEach(btn=>{
+btn.addEventListener('click',()=>{
+const open=btn.classList.toggle('open');
+btn.setAttribute('aria-expanded',open);
+const ans=btn.nextElementSibling;
+ans.style.maxHeight=open?ans.scrollHeight+'px':'0';
+});
+});
+</script>
+</body>
+</html>
